@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<body>
+<div style="font-family: Arial, sans-serif; line-height: 1.6; color: #333333; max-width: 600px; margin: 0 auto; background: #f7f7f7; padding: 20px;">
+    <p>Hey <%= name %>!</p>
+    <p>
+        Woohoo! You're in! Welcome to Foodie, where finding and enjoying great meals at cafeterias just got a whole lot easier (and more fun!).
+    </p>
+
+    <p>
+        🍔 Tasty Meals: Dive into a world of yummy food choices. Whether it’s lunch classics or adventurous new bites, we've got something for everyone.
+    </p>
+
+    <p>
+        🗣️ Your Voice Matters: Loved your meal? Or maybe not so much? Tell us all about it! Your feedback helps us make dining even better.
+    </p>
+
+    <p>To get started, please confirm your account by clicking the button below:</p>
+    <p>
+        <a href="<%= confirmation_url %>" style="background-color: #007bff; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px;">Confirm Your Account</a>
+    </p>
+
+    <p>
+        If you're having trouble clicking the 'Confirm Account' button, copy and paste the URL below into your web browser:
+    </p>
+
+    <p>
+        <a href="<%= confirmation_url %>" style="color: #007bff; text-decoration: underline;"><%= confirmation_url %></a>
+    </p>
+
+    <p>
+        Need help or have questions? Just shoot us an email at kamil.andziakk97@gmail.com, and we'll be right there to help you out.
+    </p>
+
+    <p>
+        Happy eating!
+        <br>
+        <br>
+        Cheers,
+        <br>
+        The Foodie Team
+    </p>
+</div>
+</body>
+</html>

@@ -1,0 +1,126 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Payment {
+  """a unique identifier"""
+  id: ID!
+
+  """date of creation"""
+  created_at: DateTime!
+  stripe_id: String!
+  customer_email: String!
+  type: String!
+  price: Float!
+  dates: String!
+  user: User!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type Meal {
+  """a unique identifier"""
+  id: ID!
+  title: String!
+  price: Float!
+  type: String!
+  description: String!
+  imageSource: String!
+  users: [User!]!
+  mealDates: [DateMealUser!]!
+  dateMealUsers: [DateMealUser!]!
+}
+
+type DateEntity {
+  """a unique identifier"""
+  id: ID!
+  date: DateTime!
+  dateMealUsers: [DateMealUser!]!
+}
+
+type DateMealUser {
+  """a unique identifier"""
+  id: ID!
+  meal: Meal!
+  date: DateEntity!
+  user: User!
+  occurence: Float!
+  paid: Boolean!
+}
+
+type User {
+  """a unique identifier"""
+  id: ID!
+  role: Role!
+  username: String!
+  email: String!
+  password: String!
+  isEmailConfirmed: Boolean!
+  payments: [Payment!]!
+  dateMealUsers: [DateMealUser!]!
+}
+
+enum Role {
+  Regular
+  Admin
+}
+
+type Query {
+  users: [User!]!
+  user(id: ID!): User!
+  meals: [Meal!]!
+  meal(id: ID!): Meal!
+  paymentsRange(dateFrom: DateTime!, dateTo: DateTime!): [Payment!]!
+  payment(id: ID!): Payment!
+  payments: [Payment!]!
+  mealsInDays(userEmail: String!): [DateMealUser!]!
+  mealsInDaysConstrained(userEmail: String!, dateFrom: String!, dateTo: String!): [DateMealUser!]!
+}
+
+type Mutation {
+  createUser(createUserInput: CreateUserInput!): User!
+  updateUser(id: Float!, updateUserInput: UpdateUserInput!): User!
+  removeUser(id: ID!): User!
+  createMeal(createMealInput: CreateMealInput!): Meal!
+  updateMeal(id: Float!, updateMealInput: UpdateMealInput!): Meal!
+  removeMeal(id: ID!): Meal!
+  createDateMealUser(createDateMealUserInput: DateMealUserInput!): [DateMealUser!]!
+}
+
+input CreateUserInput {
+  username: String!
+  email: String!
+  password: String!
+}
+
+input UpdateUserInput {
+  username: String
+  email: String
+  password: String
+}
+
+input CreateMealInput {
+  price: Float!
+  type: String!
+  title: String!
+  description: String!
+  imageSource: String!
+}
+
+input UpdateMealInput {
+  price: Float
+  type: String
+  title: String
+  description: String
+  imageSource: String
+}
+
+input DateMealUserInput {
+  meals: [Float!]!
+  date: String!
+  userEmail: String!
+  occurence: Float!
+}
